@@ -1,0 +1,6 @@
+_id,content.id,content.name,content.status,prefecture_id,city_id,type,editor
+abc123,JM0001,子育て支援サービス,公開,13,131016,Support,admin
+def456,JM0002,高齢者介護サービス,下書き,14,141003,Support,user1
+ghi789,JM0003,防災情報,公開,27,271004,Notification,admin
+jkl012,JM0004,就労支援制度,公開,40,401005,Education,user2
+mno345,JM0005,住民税情報,下書き,01,011002,Application,admin 
