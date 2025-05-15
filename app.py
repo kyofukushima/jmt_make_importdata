@@ -11,6 +11,12 @@ import os
 
 st.set_page_config(page_title="ジモトクデータ処理アプリ", layout="wide")
 
+# サイドバーに関連リンクを追加
+with st.sidebar:
+    with st.expander("関連リンク", expanded=False):
+        st.markdown("[UMDB管理センター](http://jimotoku-php.japaneast.cloudapp.azure.com/index.php)")
+        st.markdown("[マニュアル](https://docs.google.com/presentation/d/1IMphZVWZwMH-_lY0-oYYIi087HHFEairKlA25Rsk7lQ/edit?usp=sharing)")
+
 # データ型のマッピング
 DATA_TYPE_MAPPING = {
     "string": str,
