@@ -133,7 +133,20 @@ def main():
             # 元のファイル名を保存
             original_filename = uploaded_file.name
             # 拡張子を除いたファイル名を保存
-            st.session_state.original_filename = os.path.splitext(original_filename)[0]
+            current_filename = os.path.splitext(original_filename)[0]
+            
+            # ファイルが変更された場合、セッション状態をリセット
+            if st.session_state.original_filename != current_filename:
+                st.session_state.original_filename = current_filename
+                # 出力データフレームをリセット
+                if "output_df" in st.session_state:
+                    del st.session_state.output_df
+                # 選択された列もリセット
+                if "selected_columns" in st.session_state:
+                    del st.session_state.selected_columns
+                # 置換設定もリセット
+                if "replacements" in st.session_state:
+                    st.session_state.replacements = []
             
             # ファイル読み込み
             if uploaded_file.name.endswith('.csv'):
@@ -195,9 +208,12 @@ def main():
                 col1, col2, col3 = st.columns([2, 2, 1])
                 
                 with col1:
+                    # _idを含む列を除外した選択肢を作成
+                    available_columns = [col for col in selected_columns if col != "_id"]
+                    
                     column = st.selectbox(
                         f"列 {i+1}",
-                        selected_columns,
+                        available_columns,
                         key=f"column_{i}"
                     )
                     replace_columns.append(column)
